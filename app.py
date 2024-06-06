@@ -38,7 +38,7 @@ def llm_analyze(query,user_profiles):
     
 
 # Function to query the Pinecone API
-def query_pinecone(user_profiles):
+def query_pinecone(vector):
     q_result = index.query(
         vector=vector,
         include_values=False,

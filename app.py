@@ -63,7 +63,7 @@ if st.button("Submit"):
             summary_list = [i["metadata"]["summary"] for i in pinecone_response['matches']]
             final_result = llm_analyze(user_input,summary_list)
             # Display the final answer
-            st.write("LLM Analysis:", summary_list)
+            st.write("LLM Analysis:", final_result)
             st.write("Search Results:", summary_list)
         except KeyError as e:
             st.error(f"KeyError: {e}. The expected key was not found in the response.")

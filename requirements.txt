@@ -2,3 +2,4 @@ streamlit
 requests
 pinecone-client
 openai
+python-dotenv

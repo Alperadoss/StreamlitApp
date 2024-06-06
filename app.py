@@ -2,17 +2,21 @@ import streamlit as st
 import requests
 import os
 from pinecone import Pinecone
-import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
 
 pc  = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index = pc.Index("qnbeyond")
 
+client = OpenAI(
+  api_key=os.environ['OPENAI_API_KEY'],
+)
+
 # Function to query the ChatGPT API
 # Define the function to create an embedding
 def create_embedding(user_input):
-    response = openai.Embedding.create(
+    response = client.embeddings.create(
         model="text-embedding-3-small",
         input=user_input,
         encoding_format="float"

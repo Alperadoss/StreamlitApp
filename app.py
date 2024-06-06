@@ -13,7 +13,6 @@ client = OpenAI(
   api_key=os.environ['OPENAI_API_KEY'],
 )
 
-# Function to query the ChatGPT API
 # Define the function to create an embedding
 def create_embedding(user_input):
     response = client.embeddings.create(
@@ -36,6 +35,7 @@ def llm_analyze(query,user_profiles):
    print(analysis)
    return analysis
 
+    
 
 # Function to query the Pinecone API
 def query_pinecone(user_profiles):

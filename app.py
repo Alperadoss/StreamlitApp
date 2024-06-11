@@ -69,7 +69,7 @@ if st.button("Submit"):
             final_result = llm_analyze(user_input,final_text)
             # Display the final answer
             st.write("LLM Analysis:", final_result.choices[0].message.content)
-            st.write("Search Results:", summary_list)
+            st.write("Search Results:", final_text)
         except KeyError as e:
             st.error(f"KeyError: {e}. The expected key was not found in the response.")
         except Exception as e:

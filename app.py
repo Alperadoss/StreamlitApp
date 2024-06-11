@@ -60,8 +60,13 @@ if st.button("Submit"):
         try:
             # Query Pinecone
             pinecone_response = query_pinecone(embedding)
-            summary_list = [i["metadata"]["summary"] for i in pinecone_response['matches']]
-            final_result = llm_analyze(user_input,summary_list)
+            final_text = ""
+            for match in pinecone_response['matches']:
+               spendings = match["metadata"]["Sector Spendings"]
+               summary = match["metadata"]["summary"]
+               printed_spendings = "\n".join(f"{key}= {value}" for key, value in eval(spendings).items())
+               final_text += f"{summary}\nSektör Bazlı Harcamalar (yada ingilizcesi): \n{printed_spendings}\n"
+            final_result = llm_analyze(user_input,final_text)
             # Display the final answer
             st.write("LLM Analysis:", final_result.choices[0].message.content)
             st.write("Search Results:", summary_list)
